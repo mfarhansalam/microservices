@@ -8,15 +8,15 @@ const mysql = require('mysql');
 
 var con = mysql.createPool({
     host: "us-cdbr-east-04.cleardb.com",
-    user: "b9d191c32faac0",
-    password: "f4a019ef",
-    database: "heroku_76c19b622dd9a4e"
+    user: "b28d060c44e16b",
+    password: "41a87cf8",
+    database: "heroku_5040d734006a0f4"
 });
 
 app.get('/', (req, res) => {
     con.getConnection(function(err, tempconnection) {
         if (err) { res.send("Error occured!"); } else {
-            var sql = "SELECT * FROM customer";
+            var sql = "SELECT * FROM netfreak";
             con.query(sql, function(err, result, fields) {
                 if (err) { throw err; } else {
                     res.send(result);
@@ -27,6 +27,6 @@ app.get('/', (req, res) => {
     });
 });
 
-app.listen(4000, () => {
+app.listen(process.env.PORT || port, () => {
     console.log('Listening ok dah jadi.');
 });
